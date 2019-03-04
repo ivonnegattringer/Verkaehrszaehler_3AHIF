@@ -1,0 +1,15 @@
+als user möchte ich einen videofilm analysieren lassen umv...
+auswertung ansehen
+video anschauen - analysieren
+hintergrunderkennung und objekterkennung gleich
+identfizierung, erkennung (classification, recognition)
+usecase: videodatei auswählen - include
+app löschen - kasten ist systemrahmen
+	was nicht dabei ist!!!
+	warum würde ich es kaufen?
+keine tabellen
+video von plus
+erklärung von programm
+blockschaltprogramm
+dokumentation
+ablauf des systems
