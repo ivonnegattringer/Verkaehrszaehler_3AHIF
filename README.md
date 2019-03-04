@@ -7,3 +7,4 @@ In unserem Projekt geht es darum, Fahrzeuge in einem Video zu erkennen. Diese Fa
 ## Datenmodell
 ![alt text](https://github.com/ivonnegattringer/Verkaehrszaehler_3AHIF/blob/master/Bilder/klassendiagramm.PNG)
 ## Systemarchitektur
+![alt text](https://github.com/ivonnegattringer/Verkaehrszaehler_3AHIF/blob/master/Bilder/Systemarchitektur_neu.png)
