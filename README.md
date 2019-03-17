@@ -3,7 +3,7 @@ In unserem Projekt geht es darum, Fahrzeuge in einem Video zu erkennen. Diese Fa
 ## Projektstrukturplan
 ![alt text](https://github.com/ivonnegattringer/Verkaehrszaehler_3AHIF/blob/master/Bilder/projektstrukturplan.PNG)
 ## UseCase-Diagram
-![alt text](https://github.com/ivonnegattringer/Verkaehrszaehler_3AHIF/blob/master/Bilder/UseCaseDiagram.png)
+![alt text](https://github.com/ivonnegattringer/Verkaehrszaehler_3AHIF/blob/master/Bilder/UseCaseDiagram_neu.png)
 ## Datenmodell
 ![alt text](https://github.com/ivonnegattringer/Verkaehrszaehler_3AHIF/blob/master/Bilder/klassendiagramm.PNG)
 ## Systemarchitektur
