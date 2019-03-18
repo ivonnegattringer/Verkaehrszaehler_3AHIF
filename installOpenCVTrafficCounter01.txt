@@ -1,0 +1,15 @@
+#1 set up opencv traffic counter on windows
+https://github.com/alex-drake/OpenCV-Traffic-Counter
+
+requirements: 	python 3.6
+
+to install:
+	pip install opencv-python
+	pip install numpy
+	pip instal matplotlib
+	
+git clone https://github.com/alex-drake/OpenCV-Traffic-Counter
+
+im verzeichnis mit der ide von python 3.6 blobdetection öffnen und auf run drücken.
+
+Es gibt noch die möglichkeit, es über anaconda zu installieren. Es vereinfacht die installation und es gibt weniger komplikationen mit pip.
