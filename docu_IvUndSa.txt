@@ -1,0 +1,109 @@
+camera = re.match(r"./(\d+)_.", inputFile) -->
+		regex of a string
+camera = camera.group(1) -->
+		returns first group of regex
+		
+if camera+"_bg.jpg" in f:
+    bg = loc+"/backgrounds/"+camera+"_bg.jpg"
+    default_bg = cv2.imread(bg)
+    default_bg = cv2.cvtColor(default_bg, cv2.COLOR_BGR2HSV)
+    (_,avgSat,default_bg) = cv2.split(default_bg)
+			-->split picture in three pictures of the three different color spaces
+    avg = default_bg.copy().astype("float")
+			--> convert the picture in a array of floats
+else:
+    avg = None
+		--> get right backgroud to the video
+
+cv2.VideoCapture(video) 
+		--> returns VideoCapture object
+ret, frame = cap.read()
+		--> returns next frame and if its the end of the video
+
+cv2.bilateralFilter --> noise removal  https://docs.opencv.org/3.1.0/d4/d13/tutorial_py_filtering.html
+
+cv2.accumulateWeighted --> calculate running average (gleitender Mittelwert)
+
+cv2.cvtColor --> Converts an image from one color space to another (specific organization of colors)
+
+cv2.absdiff --> absolute difference between two arrays/between an array and a scalar
+
+cv2.GaussianBlur --> blurring  Difference between bilateralFilter and  GaussianBlur --> https://dsp.stackexchange.com/questions/8316/the-difference-between-bilateral-filter-and-gaussian-filter
+
+cv2.imshow --> Display an image in an OpenCV window
+
+cv2.threshold -> If pixel value is greater than a threshold value, it is assigned one value (may be white), else it is assigned another value (may be black) (Threshold = Grenzwert)
+
+cv2.getStructuringElement, cv2.morphologyEx, cv2.dilate -> Explanation structuring Element/Morphological operation https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_imgproc/py_morphological_ops/py_morphological_ops.html
+
+.findContours(thresholdImage, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE) --> Finds contours in a binary image.
+        --> cv2.CHAIN_APPROX_SIMPLE = It removes all redundant points and compresses the contour, thereby saving memory.
+        --> RETR.EXTERNAL = returns only the outer contour
+(x, y, w, h) = cv2.boundingRect(contour) 
+		--> finds the bounding Rectangle of an object (bounding Rectangle = the maximum extents of a 2-dim object)
+			x,y are the coordinates, w the width of the rectangle, h the height of the rectangle
+
+contour_valid = (w > CONTOUR_WIDTH) and (h > CONTOUR_HEIGHT) 
+		--> recognizes only the objects in the middle/near the red/green line
+
+if not contour_valid:
+                    continue
+		--> this car is not valid, thus not counted
+
+center = (int(x + w/2), int(y + h/2)) 
+		--> center of vehicle is calculated
+
+for (i, match) in enumerate(blobs):
+			--> blobs is a list of matches (matches is a tuple of the contour and the center of it
+        contour, centroid = match
+			--> the contour is a tuple of the position and its size
+        x, y, w, h = contour
+
+        cv2.rectangle(frame, (x, y), (x + w - 1, y + h - 1), (0, 0, 255),  LINE_THICKNESS) 
+			--> the rectangle in the video
+		cv2.circle(frame, centroid, 2, (0, 0, 255), -1) 
+			--> the small point in the video/ the center of the rectangle
+
+cv2.rectangle(frame, (x, y), (x + w - 1, y + h - 1), (0, 0, 255), LINE_THICKNESS) --> the rectangle in the video
+cv2.circle(frame, centroid, 2, (0, 0, 255), -1) --> the small point in the video/ the center of the rectangle
+
+ if car_counter is None:
+            car_counter = VehicleCounter(frame.shape[:2], 2*frame.shape[0] / 3)
+
+--> if car_counter is None (because it hasn't been created), here it's being created.
+	.shape[:2] --> that means, that the first two dimensions from the frame (frame is taken from the VideoCapture) are used (height and width). This Python feature is called "slicing"
+	2*frame.shape[0] / 3 --> the height ([0]) *2 and then / 3. 		THO WHY /3???????????
+
+
+
+current_count = car_counter.vehicle_RHS + car_counter.vehicle_LHS
+		--> update current count by adding the already counted vehicles of the left and right side
+
+frame = cv2.cvtColor(frame, cv2.COLOR_HSV2BGR)
+		-->  convert the image into the colorspace BGR 
+		--> returns image
+
+if current_count > total_cars:
+            cv2.line(frame, (0, int(2*frame_h/3)),(frame_w, int(2*frame_h/3)),
+                 (0,255,0), 2*LINE_THICKNESS)
+			--> eine Linie wird in den Frame gezeichnet
+        else:
+            cv2.line(frame, (0, int(2*frame_h/3)),(frame_w, int(2*frame_h/3)),
+             (0,0,255), LINE_THICKNESS)
+		--> wenn ein Auto die Linie überschritten hatt, wird diese grün gefärbt, ansonsten ist sie rot
+
+total_cars = current_count  
+		--> neuesten stand der autos auf den globalen zähler geben
+
+cv2.imshow("preview", frame)
+		--> open a window called "preview" where the img. frame gets shown
+
+while(True):
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+		--> waiting for q getting pressed to end program / video
+		
+cv2.destroyAllWindows() 
+		-->	closes opened windows of cv2
+cap.release() 
+		--> releases software resource and hardware resource

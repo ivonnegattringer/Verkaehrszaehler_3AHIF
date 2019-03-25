@@ -13,3 +13,6 @@ erklärung von programm
 blockschaltprogramm
 dokumentation
 ablauf des systems
+im github:kurze beschreibung, wie man das programm starten kann/es zum rennen bringt + link zum youtrack
+im youtrack: link zum github
+Use Case im pflichtenheft
