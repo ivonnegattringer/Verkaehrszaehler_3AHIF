@@ -24,6 +24,3 @@ Ansprechpartner für Fragen sind Ivonne Gattringer und Sara Panturu. Ebenfalls s
 
 ## Projektorganisation
 Projektmitglieder: Sara Panturu, Ivonne Gattringer
-
-## Phasenplan
-Vor den Semesterferien sollte es möglich sein, dass Fahrzeuge erkannt und gezählt werden. Die Unterscheidung zwischen verschiedenen Fahrzeugen und die Erzeugung eines Videos geschieht danach.
